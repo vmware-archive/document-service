@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by TIBCO WSDL-->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://xmlns.example.com/1367425861502" xmlns:ns0="http://www.allstate.com/ets/tibco/schemas/edms_interfaces/RetrieveDocumentImpl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="Untitled" targetNamespace="http://xmlns.example.com/1367425861502">
+    <wsdl:types>
+        <xs:schema xmlns="http://www.allstate.com/ets/tibco/schemas/edms_interfaces/RetrieveDocumentImpl" xmlns:mstns="http://www.allstate.com/ets/tibco/schemas/edms_interfaces/RetrieveDocumentImpl" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" id="Retrieve" targetNamespace="http://www.allstate.com/ets/tibco/schemas/edms_interfaces/RetrieveDocumentImpl">
+            <xs:complexType name="EDMSRequestHeader">
+                <xs:sequence>
+                    <xs:element name="ConsumerSourceName" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>The calling application's name. e.g., CCS.   Assigned by ETS. </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="CustomProcessName" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Indicates to the EDMS service whether additional custom process is required to map applicaton-specific document attributes, e.g., MedicalDocs.  This custom process is supplied by the application.  The process name is indicated in this field.  Assigned by ETS.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="RequestTimestamp" type="xs:dateTime">
+                        <xs:annotation>
+                            <xs:documentation>The timestamp at which request was sent.  In YYYY-MM-DDThh:mm:ss,sZ  format.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="CorrelationId" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>The ID to be used to corelate transactions.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="UserInformation">
+                        <xs:annotation>
+                            <xs:documentation>Information pertaining to the calling application's end user</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="UserId" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>End user's ID</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="UserName" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>End user's name</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="VerboseCode" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation>Indicates whether full set of results should be returned</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element default="Current" minOccurs="0" name="ServiceVersionNumber" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>The version of the service implementation</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="SecurityToken">
+                        <xs:annotation>
+                            <xs:documentation>The Kerberos SecurityToken Element</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="BinaryToken">
+                                    <xs:annotation>
+                                        <xs:documentation>The token sent with base64Binary encoding</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexType>
+                                        <xs:simpleContent>
+                                            <xs:extension base="xs:base64Binary">
+                                                <xs:attribute name="EncodingType">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="Base64Binary"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="ValueType">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="Kerberosv5ST"/>
+                                                            <xs:enumeration value="X509v3"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="id" type="xs:string"/>
+                                            </xs:extension>
+                                        </xs:simpleContent>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="EDMSResponseHeader">
+                <xs:sequence>
+                    <xs:element name="ConsumerSourceName" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>The calling application's name. e.g., CCS.   Assigned by ETS. </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="CustomProcessName" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Indicates to the EDMS service whether additional custom process is required to map applicaton-specific document attributes, e.g., MedicalDocs.  This custom process is supplied by the application.  The process name is indicated in this field.  Assigned by ETS.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="RequestTimestamp" type="xs:dateTime">
+                        <xs:annotation>
+                            <xs:documentation>The timestamp at which request was sent.  In YYYY-MM-DDThh:mm:ss,sZ  format.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ProcessDefinitionId" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>The ID that is assigned to a project in TIBCO.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TaskId" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>The ID that is assigned to the task within the integration project.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ProcessInstanceId" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>The ID that uniquely identifies an instance of a process that is running in TIBCO.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="CorrelationId" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>The ID to be used to corelate transactions.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="UserInformation">
+                        <xs:annotation>
+                            <xs:documentation>Information pertaining to the calling application's end user</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="UserId" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>End user's ID</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="UserName" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>End user's name</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="ResponseTimestamp" type="xs:dateTime">
+                        <xs:annotation>
+                            <xs:documentation>The timestamp at which response was sent.  In YYYY-MM-DDThh:mm:ss,sZ format.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="VerboseCode" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation>Indicates whether full set of results should be returned</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element default="Current" name="ServiceVersionNumber" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>The version of the service implementation</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="EDMSRetrieveRequestType">
+                <xs:sequence>
+                    <xs:element name="EDMSRequestHeader" type="mstns:EDMSRequestHeader"/>
+                    <xs:element name="ContentId" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>The ID of the document to retrieve from EDMS</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="EDMSRetrieveResponseType">
+                <xs:sequence>
+                    <xs:element name="EDMSResponseHeader" type="mstns:EDMSResponseHeader"/>
+                    <xs:element minOccurs="0" name="EDMSRetrieveResponseDetail">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="ContentId" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>The ID of the document in EDMS</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element name="FileName" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>The name of the document.</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="AuthorName" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>The Author of the document.</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="CreateTimestamp" type="xs:dateTime">
+                                    <xs:annotation>
+                                        <xs:documentation>The date the document was created. In YYYY-MM-DDThh:mm:ss,sZ  format.</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Description" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Description for the document.</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element name="FileEncoded" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>The contents of the file encoded to base64</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="MimeTypeCode" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Mime type of document .</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element name="FileLengthNumber" type="xs:long">
+                                    <xs:annotation>
+                                        <xs:documentation>The size of the document in KB.</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="RevisionTimestamp" type="xs:dateTime">
+                                    <xs:annotation>
+                                        <xs:documentation>Date the document was last revised.  In YYYY-MM-DDThh:mm:ss,sZ format.</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="StoreTimestamp" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Date the document was stored in the content repository.   In YYYY-MM-DDThh:mm:ss,sZ format.</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="SensitivityCode" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Indicates the document's sensitivity category,  i.e., Public, Internal, Confidential, Restricted</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="ApplicationMetaData" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>Custom application meta-data.</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="EDMSRetrieveRequest" type="mstns:EDMSRetrieveRequestType">
+                <xs:annotation>
+                    <xs:documentation>EDMS Retrieve service Request</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="EDMSRetrieveResponse" type="mstns:EDMSRetrieveResponseType">
+                <xs:annotation>
+                    <xs:documentation>EDMS Retrieve Service Response.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:service name="EDMSRetrieve-Tibco-service">
+        <wsdl:port binding="tns:SOAPEventSourceBinding" name="SOAPEventSource">
+            <soap:address location="http://localhost:56110/EDMS/Retrieve"/>
+        </wsdl:port>
+    </wsdl:service>
+    <wsdl:portType name="EDMSRetreiveInterface">
+        <wsdl:operation name="RetrieveDocument">
+            <wsdl:input message="tns:retrieveDocumentIn"/>
+            <wsdl:output message="tns:retrieveDocumentOut"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="SOAPEventSourceBinding" type="tns:EDMSRetreiveInterface">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="RetrieveDocument">
+            <soap:operation soapAction="EDMS/Retrieve" style="document"/>
+            <wsdl:input>
+                <soap:body parts="EDMSRetrieveRequest" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <ns1:multipartRelated xmlns:ns1="http://schemas.xmlsoap.org/wsdl/mime/">
+                    <ns1:part name="dummyName">
+                        <soap:body parts="EDMSRetrieveResponse" use="literal"/>
+                    </ns1:part>
+                </ns1:multipartRelated>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:message name="retrieveDocumentIn">
+        <wsdl:part element="ns0:EDMSRetrieveRequest" name="EDMSRetrieveRequest"/>
+    </wsdl:message>
+    <wsdl:message name="retrieveDocumentOut">
+        <wsdl:part element="ns0:EDMSRetrieveResponse" name="EDMSRetrieveResponse"/>
+    </wsdl:message>
+</wsdl:definitions>
