@@ -38,6 +38,8 @@ public class RetrieveService implements EDMSRetreiveInterface {
 		dets.setContentId(edmsRetrieveRequest.getContentId());
 
 		dets.setDescription("Hello world!");
+		dets.setFileEncoded("The quick brown fox jumps over the lazy dog.");
+
 		return response;
 	}
 }
